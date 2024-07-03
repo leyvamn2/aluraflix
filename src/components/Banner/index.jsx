@@ -57,7 +57,7 @@ const DescriptionContainer = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  color: var(--secondary-white);
+  color: #ffffff; /* Color blanco */
   padding-bottom: 40px;
 
   @media (width > 1024px) {

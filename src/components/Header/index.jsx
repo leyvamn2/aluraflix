@@ -63,7 +63,6 @@ const ButtonContainer = styled.nav`
 const Header = ({ logo }) => {
   return (
     <HeaderStyles>
-      <ShadowStyles />
       <LogoStyles src={logo} alt="Logo de aluraFlix" />
       <ButtonContainer>
         <Button path="/" iconActive={homeActivo} iconInactive={homeinactivo}>

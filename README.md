@@ -7,5 +7,9 @@ Aluraflix es una plataforma de gestión de videos que contiene las siguientes fu
 4. Eliminar videos.
 
 # Tecnologías
-Hace uso de React.js
+Hace uso de React.js junto con:
+    HTML
+    CSS
+Además, se implemente
+
 

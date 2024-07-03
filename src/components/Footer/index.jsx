@@ -26,9 +26,11 @@ const ShadowStyles = styled.div`
 
 const Footer = ({ logo }) => {
   return (
+
+   
     <FooterStyles>
       <ShadowStyles />
-      <LogoStyles src={logo} alt="Logo de aluraFlix" />
+      <LogoStyles src={logo} alt="AluraFlix" />
     </FooterStyles>
   );
 };
