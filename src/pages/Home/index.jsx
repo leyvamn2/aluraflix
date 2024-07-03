@@ -1,10 +1,11 @@
 import styled from "styled-components";
+import { useContext } from "react";
+import PropTypes from "prop-types";
 import Banner from "../../components/Banner";
 import CourseSection from "../../components/CourseSection";
 import Modal from "../../components/Modal";
-import { useContext } from "react";
-import { GlobalContext } from "../../context/Context";
 import Popup from "../../components/Popup";
+import { GlobalContext } from "../../context/Context";
 
 const HomeContainer = styled.section`
   display: flex;
@@ -12,12 +13,12 @@ const HomeContainer = styled.section`
   flex: 1;
   padding-bottom: 100px;
 
-  @media (width > 1024px) {
+  @media (min-width: 1024px) {
     padding-bottom: 0;
   }
 `;
 
-const DivStyles = styled.div`
+const NoVideosMessage = styled.div`
   display: flex;
   justify-content: center;
   flex: 1;
@@ -25,10 +26,9 @@ const DivStyles = styled.div`
   font-weight: bold;
   background-color: var(--main-background-black);
   color: var(--secondary-white);
-  padding-top: 40px;
-  padding-bottom: 140px;
+  padding: 40px 0 140px;
 
-  @media (width > 1024px) {
+  @media (min-width: 1024px) {
     padding-bottom: 0;
   }
 `;
@@ -37,8 +37,8 @@ const Home = () => {
   const { categories, selectedVideo, setSelectedVideo, videos, popup } =
     useContext(GlobalContext);
 
-  const categoriesWithVideos = categories.filter((categoria) =>
-    videos.some((video) => video.Categoria === categoria.nombre)
+  const categoriesWithVideos = categories.filter((category) =>
+    videos.some((video) => video.Categoria === category.nombre)
   );
 
   return (
@@ -49,12 +49,35 @@ const Home = () => {
           <CourseSection key={category.id} category={category} />
         ))
       ) : (
-        <DivStyles>No hay videos que mostrar</DivStyles>
+        <NoVideosMessage>No hay videos que mostrar</NoVideosMessage>
       )}
-      <Modal video={selectedVideo} closeModal={() => setSelectedVideo(null)} />
+      {selectedVideo && (
+        <Modal video={selectedVideo} closeModal={() => setSelectedVideo(null)} />
+      )}
       {popup.show && <Popup message={popup.message} type={popup.type} />}
     </HomeContainer>
   );
+};
+
+Home.propTypes = {
+  categories: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      nombre: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  selectedVideo: PropTypes.object,
+  setSelectedVideo: PropTypes.func.isRequired,
+  videos: PropTypes.arrayOf(
+    PropTypes.shape({
+      Categoria: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  popup: PropTypes.shape({
+    show: PropTypes.bool.isRequired,
+    message: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default Home;

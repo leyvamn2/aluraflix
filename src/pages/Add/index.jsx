@@ -16,7 +16,7 @@ const AddContainer = styled.section`
   flex: 1;
   gap: 60px;
 
-  @media (width > 1024px) {
+  @media (min-width: 1024px) {
     justify-content: center;
   }
 `;
@@ -48,7 +48,7 @@ const FormStyles = styled.form`
   align-items: center;
   gap: 60px;
 
-  @media (width > 1024px) {
+  @media (min-width: 1024px) {
     flex-direction: row;
     justify-content: space-evenly;
   }
@@ -76,7 +76,7 @@ const Add = () => {
     createNewVideo,
     clearInputs,
     popup,
-		setErrorMessages,
+    setErrorMessages,
   } = useContext(GlobalContext);
 
   useEffect(() => {
@@ -85,8 +85,8 @@ const Add = () => {
     handleInputChange("imagen", "");
     handleInputChange("video", "");
     handleInputChange("descripcion", "");
-		setErrorMessages({})
-  }, []);
+    setErrorMessages({});
+  }, [handleInputChange, setErrorMessages]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -109,7 +109,7 @@ const Add = () => {
           placeholder="Título del video"
           name="titulo"
           minlength="3"
-          title="tienes que tener al menos 3 caracteres para ser valido"
+          title="Tienes que tener al menos 3 caracteres para ser valido"
         >
           Título
         </FormInput>
@@ -122,11 +122,11 @@ const Add = () => {
         </OptionInput>
         <FormInput
           inputValue={image}
-          placeholder="link de la imagen"
+          placeholder="Link de la imagen"
           type="url"
           name="imagen"
           pattern="^https:\/\/i\.ytimg\.com\/vi\/.*$"
-					title="Por favor coloca una Url de youtube"
+          title="Por favor coloca una URL de YouTube"
         >
           Imagen
         </FormInput>
@@ -136,7 +136,7 @@ const Add = () => {
           type="url"
           name="video"
           pattern="^https:\/\/www\.youtube\.com\/watch\?v=.*$"
-          title="Por favor coloca una Url de youtube"
+          title="Por favor coloca una URL de YouTube"
         >
           Video
         </FormInput>
@@ -156,7 +156,7 @@ const Add = () => {
             Guardar
           </ActionBtn>
           <ActionBtn action={clearInputs} type="button">
-            limpiar
+            Limpiar
           </ActionBtn>
         </ButtonContainer>
       </FormStyles>

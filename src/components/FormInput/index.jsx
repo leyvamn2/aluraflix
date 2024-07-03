@@ -22,7 +22,7 @@ const InputStyles = styled.input`
   height: 62px;
   font-size: 2rem;
   font-weight: 300;
-  background: none;
+  background: white;
   padding: 16px 4px;
   color: var(--secondary-white);
   border: ${(props) =>
@@ -47,7 +47,7 @@ const TextareaStyles = styled.textarea`
   border-radius: 10px;
   font-size: 2rem;
   font-weight: 300;
-  background: none;
+  background: white;
   padding: 16px 4px;
   color: var(--secondary-white);
   border: ${(props) =>
